@@ -1,5 +1,5 @@
-
 import { defineConfig, devices } from "@playwright/test";
+require('dotenv').config();
 
 export default defineConfig({
   testDir: "./tests",
@@ -10,10 +10,10 @@ export default defineConfig({
   reporter: "html",
 
   use: {
-    baseURL: "https://qauto.forstudy.space/",
+    baseURL: process.env.BASE_URL,
     httpCredentials: {
-      username: "guest",
-      password: "welcome2qauto",
+      username: process.env.HTTP_CREDENTIALS_USERNAME!,
+      password: process.env.HTTP_CREDENTIALS_PASSWORD!,
     },
 
     trace: "on-first-retry",
