@@ -3,6 +3,7 @@ require('dotenv').config();
 
 export default defineConfig({
   testDir: "./tests",
+  testMatch: '**/*.spec.ts',
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
@@ -35,9 +36,9 @@ export default defineConfig({
       name: 'chromium',
       use: { 
         ...devices['Desktop Chrome'],
-        storageState: '.auth/user.json',
+        // storageState: '.auth/user.json',
       },
-      dependencies: ['setup'],
+      // dependencies: ['setup'],
     },
     // {
     //   name: 'chromium',
