@@ -6,7 +6,14 @@ import GaragePage from "../pom/pages/GaragePage";
 const authFile = ".auth/user.json";
 
 setup("Authenticate user with saving storage state", async ({ browser }) => {
-  const context = await browser.newContext();
+  console.log("USERNAME:", process.env.HTTP_CREDENTIALS_USERNAME);
+console.log("PASSWORD:", process.env.HTTP_CREDENTIALS_PASSWORD);
+  const context = await browser.newContext({
+    httpCredentials: {
+      username: process.env.HTTP_CREDENTIALS_USERNAME! || 'guest',
+      password: process.env.HTTP_CREDENTIALS_PASSWORD! || 'welcome2qauto',
+    },
+  });
   const page = await context.newPage();
 
   const signInForm = new SignInForm(page);
