@@ -1,6 +1,11 @@
-name: Playwright Tests via Report
+name: Playwright Tests via Inputs
 
-on: workflow_dispatch
+on: workflow_dispatch:
+  inputs:
+    run-settings:
+      description: 'Test settings for run'
+      required: false
+      default: ' '
 
 jobs:
   test:
@@ -23,7 +28,7 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npx playwright test ${{inputs.run-settings}}
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
