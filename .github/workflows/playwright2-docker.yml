@@ -26,4 +26,10 @@ jobs:
 
       - name: Run tests
         run: |
-          docker run your-image-tag:latest
+          docker run \
+            -e BASE_URL=${BASE_URL} \
+            -e HTTP_CREDENTIALS_USERNAME=${HTTP_CREDENTIALS_USERNAME} \
+            -e HTTP_CREDENTIALS_PASSWORD=${HTTP_CREDENTIALS_PASSWORD} \
+            -e USER_EMAIL=${USER_EMAIL} \
+            -e USER_PASSWORD=${USER_PASSWORD} \
+            your-image-tag:latest
